@@ -46,12 +46,16 @@ const tourSchema = new mongoose.Schema(
     },
     priceDiscount: {
       type: Number,
-      validate: { // custom validation
-        validator: function (val) {
-          return val < this.price;
-        },
-        message: "Discount price ({VALUE}) should be less than regular price",
-      },
+      ////// this can use only in case create new Document but in case updating, deleting can't
+      ////// so that the update validaion can be executed by middleware
+      // validate: {
+      //   // custom validation
+      //   validator: function (val) {
+      //     console.log(val, this.price);
+      //     return val < this.price;
+      //   },
+      //   message: "Discount price ({VALUE}) should be less than regular price",
+      // },
     },
     summary: {
       type: String,

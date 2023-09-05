@@ -38,7 +38,7 @@ class APIFeatures {
   // exclusion => query.select("-name -duration -price") --> putting (-) minus at first
   limitFields() {
     if (this.queryReq.fields) {
-      const fields = this.queryReq.fields.split(",").join("");
+      const fields = this.queryReq.fields.split(",").join(" ");
       this.query = this.query.select(fields);
     } else {
       this.query = this.query.select("-__v");

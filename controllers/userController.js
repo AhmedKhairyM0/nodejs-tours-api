@@ -1,34 +1,71 @@
-exports.getAllUsers = (req, res) => {
-  res.status(500).json({
-    status: "error",
-    message: "This is not defined yet!",
-  });
-};
+const User = require("../models/userModel");
+const AppError = require("../utils/appError");
+const catchAsync = require("../utils/catchAsync");
 
-exports.getUser = (req, res) => {
-  res.status(500).json({
-    status: "error",
-    message: "This is not defined yet!",
-  });
-};
+exports.getAllUsers = catchAsync(async (req, res, next) => {
+  const users = await User.find();
 
-exports.createUser = (req, res) => {
-  res.status(500).json({
-    status: "error",
-    message: "This is not defined yet!",
+  res.status(200).json({
+    status: "success",
+    data: { users },
   });
-};
+});
 
-exports.updateUser = (req, res) => {
-  res.status(500).json({
-    status: "error",
-    message: "This is not defined yet!",
-  });
-};
+exports.getUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
 
-exports.deleteUser = (req, res) => {
+  if (!user) {
+    next(new AppError("No User found with that ID"));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: { user },
+  });
+});
+
+exports.createUser = catchAsync(async (req, res, next) => {
   res.status(500).json({
     status: "error",
-    message: "This is not defined yet!",
+    message: "No implemented yet",
   });
-};
+});
+
+exports.updateUser = catchAsync(async (req, res, next) => {
+  const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
+
+  if (!user) {
+    next(new AppError("No User found with that ID"));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: { user },
+  });
+});
+
+exports.deleteUser = catchAsync(async (req, res, next) => {
+  const user = await User.findByIdAndDelete(req.params.id, {
+    new: true,
+  });
+
+  if (!user) {
+    next(new AppError("No User found with that ID"));
+  }
+
+  res.status(204).json({
+    status: "success",
+    data: null,
+  });
+});
+
+exports.deleteAllUser = catchAsync(async (req, res, next) => {
+  await User.deleteMany();
+
+  res.status(200).json({
+    status: "success",
+    message: "All users are deleted!",
+  });
+});
