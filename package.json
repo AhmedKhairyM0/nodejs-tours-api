@@ -1,0 +1,30 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Learning Phase for Node, Express and Mo ngoDB",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon ./server.js",
+    "debug": "ndb server.js",
+    "import-data": "node ./dev-data/import-dev-data.js --import",
+    "delete-data": "node ./dev-data/import-dev-data.js --delete"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "moment-timezone": "^0.5.43",
+    "mongoose": "^5.13.20",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.9.5",
+    "slugify": "^1.6.6",
+    "validator": "^13.11.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "_comment": "Global Packages: nodemon, ndb"
+}
