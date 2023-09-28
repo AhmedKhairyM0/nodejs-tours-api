@@ -1,7 +1,7 @@
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const Review = require('./../models/reviewModel');
-const factory = require("./factoryHandler")
+const factory = require("./factoryHandler");
 
 exports.setTourAndUserId = (req, res, next) => {
     if(!req.body.tour) req.body.tour = req.params.tourId;

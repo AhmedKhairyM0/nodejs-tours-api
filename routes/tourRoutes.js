@@ -1,21 +1,15 @@
 const express = require("express");
 const tourController = require("./../controllers/tourController");
 const authController = require("./../controllers/authController");
-<<<<<<< HEAD
 const reviewController = require("./../controllers/reviewController");
 const reviewRouter = require('./reviewRoutes');
-=======
->>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
 
 const router = express.Router();
 
 // router.param("id", tourController.checkID);
 
-<<<<<<< HEAD
 router.use("/:tourId/reviews", reviewRouter);
 
-=======
->>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
 // Aliasing
 router
   .route("/top-5-cheapest")
