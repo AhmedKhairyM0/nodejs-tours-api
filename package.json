@@ -19,7 +19,10 @@
     "moment-timezone": "^0.5.43",
     "mongoose": "^5.13.20",
     "morgan": "^1.10.0",
+<<<<<<< HEAD
     "nodemailer": "^6.9.5",
+=======
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
     "slugify": "^1.6.6",
     "validator": "^13.11.0"
   },

@@ -1,6 +1,7 @@
 const User = require("../models/userModel");
 const AppError = require("../utils/appError");
 const catchAsync = require("../utils/catchAsync");
+<<<<<<< HEAD
 const factory = require("./factoryHandler")
 
 const filterObj = (obj, ...allowed) => {
@@ -11,6 +12,8 @@ const filterObj = (obj, ...allowed) => {
 
   return newObj;
 };
+=======
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
 
 exports.getAllUsers = catchAsync(async (req, res, next) => {
   const users = await User.find();
@@ -21,6 +24,7 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
   });
 });
 
+<<<<<<< HEAD
 
 exports.updateMe = catchAsync(async (req, res, next) => {
   // 1. body contains passwords then return error with 'using route /updatePassword'
@@ -58,6 +62,55 @@ exports.activateMyAccount = catchAsync(async (req, res, next) => {
   res.status(200).json({
     status: "success",
     message: "Your account is successfully activated.",
+=======
+exports.getUser = catchAsync(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+
+  if (!user) {
+    next(new AppError("No User found with that ID"));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: { user },
+  });
+});
+
+exports.createUser = catchAsync(async (req, res, next) => {
+  res.status(500).json({
+    status: "error",
+    message: "No implemented yet",
+  });
+});
+
+exports.updateUser = catchAsync(async (req, res, next) => {
+  const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
+
+  if (!user) {
+    next(new AppError("No User found with that ID"));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: { user },
+  });
+});
+
+exports.deleteUser = catchAsync(async (req, res, next) => {
+  const user = await User.findByIdAndDelete(req.params.id, {
+    new: true,
+  });
+
+  if (!user) {
+    next(new AppError("No User found with that ID"));
+  }
+
+  res.status(204).json({
+    status: "success",
+    data: null,
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
   });
 });
 
@@ -69,6 +122,7 @@ exports.deleteAllUser = catchAsync(async (req, res, next) => {
     message: "All users are deleted!",
   });
 });
+<<<<<<< HEAD
 
 exports.createUser = (req, res) => {
   res.status(500).json({ 
@@ -86,3 +140,5 @@ exports.updateUser = (req, res) => {
 
 exports.getUser = factory.getOne(User);
 exports.deleteUser = factory.deleteOne(User);
+=======
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6

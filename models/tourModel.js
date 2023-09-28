@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 const slugify = require("slugify");
+<<<<<<< HEAD
 // const validator = require("validator");
+=======
+const validator = require("validator");
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
 
 const tourSchema = new mongoose.Schema(
   {
@@ -46,7 +50,11 @@ const tourSchema = new mongoose.Schema(
     },
     priceDiscount: {
       type: Number,
+<<<<<<< HEAD
       ////// 'this' can use only in case create new Document but in case updating, deleting can't
+=======
+      ////// this can use only in case create new Document but in case updating, deleting can't
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
       ////// so that the update validaion can be executed by middleware
       // validate: {
       //   // custom validation
@@ -98,6 +106,7 @@ tourSchema.virtual("durationsWeek").get(function () {
   return this.duration / 7;
 });
 
+<<<<<<< HEAD
 // Virtual populate
 tourSchema.virtual("reviews", { 
   ref: "Review",
@@ -105,6 +114,8 @@ tourSchema.virtual("reviews", {
   localField: "_id",
 });
 
+=======
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
 // DOCUMENT MIDDLEWARE: runs before .save() and .create()
 tourSchema.pre("save", function (next) {
   this.slug = slugify(this.name, {

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 const crypto = require("crypto");
+=======
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcryptjs");
@@ -40,7 +43,10 @@ const userSchema = new mongoose.Schema({
       "Please provide valid email i.e. (sample@example.com)",
     ],
   },
+<<<<<<< HEAD
   photo: String,
+=======
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
   password: {
     type: String,
     required: [true, "Please provide a password"],
@@ -74,6 +80,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     select: false,
   },
+<<<<<<< HEAD
+=======
+  // * photo: String
+  photo: String,
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
   role: {
     type: String,
     default: "user",
@@ -82,6 +93,7 @@ const userSchema = new mongoose.Schema({
       message: "Don't have access this permission.",
     },
   },
+<<<<<<< HEAD
   resetPasswordToken: String,
   resetPasswordExpire: Date,
   active: {
@@ -89,6 +101,8 @@ const userSchema = new mongoose.Schema({
     default: true,
     select: false
   }
+=======
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
 });
 
 // Encrypt the password pre-save the document, Never don't have to save password as plain text due to save it from hacks
@@ -98,6 +112,7 @@ userSchema.pre("save", async function (next) {
     // delete passwordConfirm, beacause there is no benefit for remaining
     // it is only used for equality validation with password field
     this.passwordConfirm = undefined;
+<<<<<<< HEAD
   }
   next();
 });
@@ -106,15 +121,23 @@ userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
     // const dateTz = moment.tz(Date.now(), "Africa/Cairo");
     this.passwordChangedAt = Date.now() - 1000;
+=======
+
+    // const dateTz = moment.tz(Date.now(), "Africa/Cairo");
+    this.passwordChangedAt = Date.now();
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
   }
   next();
 });
 
+<<<<<<< HEAD
 userSchema.pre(/^find/, function(next) {
   this.find({ active: true});
   next();
 });
 
+=======
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
 userSchema.methods.correctPassword = async function (
   candidatePassword,
   userPassword
@@ -125,13 +148,21 @@ userSchema.methods.correctPassword = async function (
 /** Check if user changes password after  */
 userSchema.methods.changedPasswordAfter = function (JwtTimestamp) {
   if (this.passwordChangedAt) {
+<<<<<<< HEAD
     const changedPasswordTime = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
+=======
+    const changedPasswordTime = parseInt(
+      this.passwordChangedAt.getTime() / 1000,
+      10
+    );
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
     console.log(changedPasswordTime, JwtTimestamp);
     return changedPasswordTime > JwtTimestamp;
   }
   return false;
 };
 
+<<<<<<< HEAD
 userSchema.methods.createResetPasswordToken = function() {
   const resetToken = crypto.randomBytes(32).toString('hex');
   
@@ -141,6 +172,8 @@ userSchema.methods.createResetPasswordToken = function() {
   return resetToken;
 }
 
+=======
+>>>>>>> cdd3cff3df3b8a456f524b376b96248a125fd9f6
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
